@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Baptism-Girls</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
+  
 
   <style>
     body {
@@ -67,18 +67,69 @@
       justify-content: center;
       gap: 1rem;
       padding: 1rem;
+      max-width: 1200px;
+      margin: auto;
     }
 
-    .gallery a img {
-      border-radius: 8px;
+    .set-item {
+      flex: 1 1 calc(33.33% - 1rem);
+      max-width: calc(33.33% - 1rem);
+      text-align: center;
+    }
+
+    .set-label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .mosaic-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
       border: 2px solid #ccc;
-      width: 200px;
-      height: auto;
+      border-radius: 8px;
+    }
+
+    .mosaic-wrapper a,
+    .mosaic-wrapper img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .tiles {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      grid-template-rows: repeat(6, 1fr);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .tile {
+      background: #fff;
+      animation: reveal 0.7s ease forwards;
+    }
+
+    @keyframes reveal {
+      to {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .set-item {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
     }
   </style>
 </head>
 <body>
-
   <header>
     <img src="../unnamed.png" alt="Alphonsa Designs Logo" class="logo" />
     <h1>Baptism Sets for Girls</h1>
@@ -92,19 +143,77 @@
   </div>
 
   <section class="gallery">
-    <a href="unnamed.png" data-fancybox="Baptism" data-caption="Set 1">
-      <img src="unnamed.png" alt="Set 1">
-    </a>
-    <a href="set2.jpg" data-fancybox="Baptism" data-caption="Set 2">
-      <img src="set2.jpg" alt="Set 2">
-    </a>
-    <a href="set3.jpg" data-fancybox="Baptism" data-caption="Set 3">
-      <img src="set3.jpg" alt="Set 3">
-    </a>
+  
+    <div class="set-item">
+      <p class="set-label">Pearl Blossom Set</p>
+      <div class="mosaic-wrapper">
+        <a href="Pearl Blossom Set.html">
+          <img src="baptism-g/baptism-g1.jpg" alt="Set 1" />
+        </a>
+        <div class="tiles"></div>
+      </div>
+    </div>
+
+    <div class="set-item">
+      <p class="set-label">Golden Grace Set</p>
+      <div class="mosaic-wrapper">
+         <a href="Golden Grace Set.html">
+          <img src="baptism-g/baptism-g3.jpg" alt="Set 2" />
+        </a>
+        <div class="tiles"></div>
+      </div>
+    </div>
+
+    <div class="set-item">
+      <p class="set-label">Pastel  Green Sets</p>
+      <div class="mosaic-wrapper">
+         <a href="Pastel  Green Sets.html">
+          <img src="baptism-g/baptism-g7.jpg" alt="Set 3" />
+        </a>
+        <div class="tiles"></div>
+      </div>
+    </div>
+    <div class="set-item">
+      <p class="set-label">Lavender Bloom Sets</p>
+      <div class="mosaic-wrapper">
+         <a href="Lavender Bloom Sets.html">
+          <img src="baptism-g/baptism-g11.jpg" alt="Set 4" />
+        </a>
+        <div class="tiles"></div>
+      </div>
+    </div>
+    <div class="set-item">
+      <p class="set-label">Sky Petal Set</p>
+      <div class="mosaic-wrapper">
+         <a href="Sky Petal Set.html">
+          <img src="baptism-g/baptism-g14.jpg" alt="Set 5" />
+        </a>
+        <div class="tiles"></div>
+      </div>
+    </div>
+    <div class="set-item">
+      <p class="set-label">Red Velvet Set</p>
+      <div class="mosaic-wrapper">
+         <a href="Red Velvet Set.html">
+          <img src="baptism-g/baptism-g22.jpg" alt="Set 6" />
+        </a>
+        <div class="tiles"></div>
+      </div>
+    </div>
   </section>
-
-  <!--  JS -->
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
-
+<script>
+    
+    const wrappers = document.querySelectorAll('.mosaic-wrapper');
+    wrappers.forEach(wrapper => {
+      const tiles = wrapper.querySelector('.tiles');
+      const cols = 10, rows = 6;
+      for (let i = 0; i < cols * rows; i++) {
+        const tile = document.createElement('div');
+        tile.className = 'tile';
+        tile.style.animationDelay = `${(Math.random() * 1.2).toFixed(2)}s`;
+        tiles.appendChild(tile);
+      }
+    });
+  </script>
 </body>
 </html>
